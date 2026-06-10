@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Controller - Local Console</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="controller-container">
+        
+        <!-- Join Screen -->
+        <div id="join-screen">
+            <h1>Connect</h1>
+            <input type="text" id="room-input" placeholder="Room Code" maxlength="4" autocomplete="off" inputmode="numeric">
+            <input type="text" id="name-input" placeholder="Player Name" maxlength="10">
+            <button id="join-btn" class="btn btn-primary" style="width:100%; max-width:300px; margin-top:1rem;">Sync Controller</button>
+            <p id="error-msg" style="color: #ff3333; margin-top: 1rem;"></p>
+        </div>
+
+        <!-- Pad Screen -->
+        <div id="pad-screen">
+            <div id="player-name-display">Controller</div>
+            
+            <div class="controller-layout">
+                <div class="d-pad">
+                    <div class="d-btn d-up" id="btn-up">▲</div>
+                    <div class="d-btn d-down" id="btn-down">▼</div>
+                    <div class="d-btn d-left" id="btn-left">◀</div>
+                    <div class="d-btn d-right" id="btn-right">▶</div>
+                    <div class="d-center"></div>
+                </div>
+                
+                <div class="action-buttons">
+                    <div class="action-btn" id="btn-a">A</div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="controller.js"></script>
+</body>
+</html>

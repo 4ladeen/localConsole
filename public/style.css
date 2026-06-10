@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
+:root {
+    --bg-dark: #0a0a0c;
+    --bg-card: rgba(255, 255, 255, 0.05);
+    --primary: #00ff88;
+    --primary-glow: rgba(0, 255, 136, 0.4);
+    --secondary: #00ccff;
+    --secondary-glow: rgba(0, 204, 255, 0.4);
+    --text-main: #ffffff;
+    --text-muted: #a0a0a0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at top center, #1a1a24 0%, var(--bg-dark) 100%);
+    color: var(--text-main);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Glassmorphism Container */
+.container {
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 3rem;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 3rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Premium Buttons */
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #000;
+    box-shadow: 0 0 15px var(--primary-glow);
+}
+
+.btn-primary:hover {
+    background: #00e67a;
+    box-shadow: 0 0 25px var(--primary-glow);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--secondary);
+    border: 2px solid var(--secondary);
+    box-shadow: inset 0 0 10px rgba(0, 204, 255, 0.1), 0 0 10px rgba(0, 204, 255, 0.1);
+}
+
+.btn-secondary:hover {
+    background: rgba(0, 204, 255, 0.1);
+    box-shadow: inset 0 0 15px rgba(0, 204, 255, 0.2), 0 0 15px rgba(0, 204, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Controller Styles */
+.controller-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+#join-screen {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+input[type="text"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+#pad-screen {
+    display: none;
+    height: 100%;
+    width: 100%;
+    background: radial-gradient(circle at center, #2a2a35 0%, #0a0a0c 100%);
+    position: relative;
+}
+
+#player-name-display {
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    z-index: 10;
+    position: relative;
+}
+
+.controller-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: calc(100% - 60px);
+    padding: 0 10%;
+}
+
+.d-pad {
+    position: relative;
+    width: 160px;
+    height: 160px;
+}
+
+.d-btn {
+    position: absolute;
+    background: #222;
+    border: 2px solid #333;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5), inset 0 2px 5px rgba(255,255,255,0.1);
+    transition: all 0.1s;
+}
+
+.d-btn:active, .d-btn.active {
+    background: #111;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.8), inset 0 2px 10px rgba(0,0,0,0.5);
+    transform: scale(0.95);
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.d-up { top: 0; left: 50px; width: 60px; height: 60px; border-bottom: none; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.d-down { bottom: 0; left: 50px; width: 60px; height: 60px; border-top: none; border-top-left-radius: 0; border-top-right-radius: 0; }
+.d-left { top: 50px; left: 0; width: 60px; height: 60px; border-right: none; border-top-right-radius: 0; border-bottom-right-radius: 0; }
+.d-right { top: 50px; right: 0; width: 60px; height: 60px; border-left: none; border-top-left-radius: 0; border-bottom-left-radius: 0; }
+.d-center {
+    position: absolute;
+    top: 50px; left: 50px; width: 60px; height: 60px;
+    background: #222;
+    border: none;
+    z-index: 1;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.action-btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(145deg, #333, #111);
+    border: 2px solid #444;
+    color: rgba(255,255,255,0.8);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.1s;
+    user-select: none;
+}
+
+.action-btn:active, .action-btn.active {
+    transform: translateY(4px) scale(0.95);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.8), inset 0 5px 15px rgba(0,0,0,0.6);
+    color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+/* Host Game Area */
+#setup-area {
+    margin-bottom: 2rem;
+}
+
+#room-code {
+    font-size: 4rem;
+    font-weight: 800;
+    letter-spacing: 8px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+}
+
+#game-area {
+    width: 100%;
+    height: 60vh;
+    background: #050505;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.player-avatar {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+    color: white;
+    font-size: 1.2rem;
+    box-shadow: 0 0 15px currentColor;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    transition: top 0.1s ease-out, left 0.1s ease-out, transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid rgba(255,255,255,0.5);
+    z-index: 10;
+}
+
+#players-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 1.5rem;
+}
+
+.player-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: white;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.2);
+    animation: scaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.player-color-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    box-shadow: 0 0 8px currentColor;
+}
+
+/* Landscape orientation for controller */
+@media (orientation: landscape) and (max-height: 500px) {
+    .controller-layout {
+        padding: 0 5%;
+    }
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen - Local Console</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="container" style="max-width: 900px; width: 95%;">
+        <div id="setup-area">
+            <h2 style="margin: 0; font-weight: 300; font-size: 1.5rem;">Join at <strong style="color:var(--text-main);">this IP</strong> with code:</h2>
+            <div id="room-code">----</div>
+            <div id="players-list"></div>
+        </div>
+        
+        <div id="game-area">
+            <!-- Grid background for premium feel -->
+            <div style="position:absolute; width:100%; height:100%; background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 30px 30px; opacity: 0.3;"></div>
+            <!-- Players will be drawn here -->
+        </div>
+    </div>
+
+    <script src="host.js"></script>
+</body>
+</html>
