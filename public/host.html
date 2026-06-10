@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Host - Local Console</title>
+    <title>Screen - Local Console</title>
     <link rel="stylesheet" href="style.css">
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-    <div class="container" style="max-width: 800px;">
-        <h1>Local Console Screen</h1>
+    <div class="container" style="max-width: 900px; width: 95%;">
         <div id="setup-area">
-            <h2>Room Code: <span id="room-code" style="color: #FF5733; font-size: 2.5rem; letter-spacing: 5px;">Loading...</span></h2>
-            <p>Go to this IP on your phone and enter the code to join.</p>
-            
+            <h2 style="margin: 0; font-weight: 300; font-size: 1.5rem;">Join at <strong style="color:var(--text-main);">this IP</strong> with code:</h2>
+            <div id="room-code">----</div>
             <div id="players-list"></div>
         </div>
         
         <div id="game-area">
+            <!-- Grid background for premium feel -->
+            <div style="position:absolute; width:100%; height:100%; background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 30px 30px; opacity: 0.3;"></div>
             <!-- Players will be drawn here -->
         </div>
     </div>

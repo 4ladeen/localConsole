@@ -12,28 +12,29 @@
         
         <!-- Join Screen -->
         <div id="join-screen">
-            <h1>Join Game</h1>
-            <input type="text" id="room-input" placeholder="Enter Room Code" maxlength="4" autocomplete="off">
-            <br>
-            <input type="text" id="name-input" placeholder="Your Name" maxlength="10">
-            <br>
-            <button id="join-btn" class="btn btn-primary">Join</button>
-            <p id="error-msg" style="color: #ff3333;"></p>
+            <h1>Connect</h1>
+            <input type="text" id="room-input" placeholder="Room Code" maxlength="4" autocomplete="off" inputmode="numeric">
+            <input type="text" id="name-input" placeholder="Player Name" maxlength="10">
+            <button id="join-btn" class="btn btn-primary" style="width:100%; max-width:300px; margin-top:1rem;">Sync Controller</button>
+            <p id="error-msg" style="color: #ff3333; margin-top: 1rem;"></p>
         </div>
 
         <!-- Pad Screen -->
-        <div id="pad-screen" style="display: none;">
-            <h2 id="player-name-display">Controller</h2>
+        <div id="pad-screen">
+            <div id="player-name-display">Controller</div>
             
-            <div class="d-pad">
-                <button class="btn btn-secondary up" onmousedown="sendAction('up')" ontouchstart="sendAction('up')">↑</button>
-                <button class="btn btn-secondary left" onmousedown="sendAction('left')" ontouchstart="sendAction('left')">←</button>
-                <button class="btn btn-secondary right" onmousedown="sendAction('right')" ontouchstart="sendAction('right')">→</button>
-                <button class="btn btn-secondary down" onmousedown="sendAction('down')" ontouchstart="sendAction('down')">↓</button>
-            </div>
-            
-            <div class="action-buttons">
-                <button class="btn btn-primary action-btn" onmousedown="sendAction('buttonA')" ontouchstart="sendAction('buttonA')">A</button>
+            <div class="controller-layout">
+                <div class="d-pad">
+                    <div class="d-btn d-up" id="btn-up">▲</div>
+                    <div class="d-btn d-down" id="btn-down">▼</div>
+                    <div class="d-btn d-left" id="btn-left">◀</div>
+                    <div class="d-btn d-right" id="btn-right">▶</div>
+                    <div class="d-center"></div>
+                </div>
+                
+                <div class="action-buttons">
+                    <div class="action-btn" id="btn-a">A</div>
+                </div>
             </div>
         </div>
         

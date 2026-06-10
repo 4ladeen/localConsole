@@ -26,9 +26,10 @@ socket.on('joined_room', (playerInfo) => {
     joinScreen.style.display = 'none';
     padScreen.style.display = 'block';
     
-    padScreen.style.backgroundColor = playerInfo.color;
+    // Setup UI colors based on assigned player color
+    document.documentElement.style.setProperty('--primary', playerInfo.color);
     playerNameDisplay.innerText = playerInfo.name;
-    document.body.style.backgroundColor = '#121212';
+    playerNameDisplay.style.color = playerInfo.color;
 });
 
 socket.on('error', (msg) => {
@@ -36,22 +37,96 @@ socket.on('error', (msg) => {
 });
 
 socket.on('host_disconnected', () => {
-    alert("The host disconnected. Game over!");
+    alert("Connection lost with the console.");
     location.reload();
 });
 
-function sendAction(action) {
-    if (currentRoomCode) {
-        socket.emit('player_action', {
-            roomCode: currentRoomCode,
-            action: action
-        });
+// Setup continuous actions for D-Pad
+const actions = {
+    'up': false,
+    'down': false,
+    'left': false,
+    'right': false
+};
+
+let actionLoop = null;
+
+function updateActions() {
+    if (!currentRoomCode) return;
+    
+    for (const [action, isActive] of Object.entries(actions)) {
+        if (isActive) {
+            socket.emit('player_action', { roomCode: currentRoomCode, action });
+        }
     }
 }
 
-// Prevent default touch behaviors like scrolling while using the d-pad
+function startActionLoop() {
+    if (!actionLoop) {
+        actionLoop = setInterval(updateActions, 50);
+    }
+}
+
+function stopActionLoop() {
+    if (actionLoop) {
+        clearInterval(actionLoop);
+        actionLoop = null;
+    }
+}
+
+function setupButton(id, actionName, isContinuous = true) {
+    const btn = document.getElementById(id);
+    
+    const triggerStart = (e) => {
+        e.preventDefault();
+        btn.classList.add('active');
+        if (navigator.vibrate) navigator.vibrate(15);
+        
+        if (isContinuous) {
+            actions[actionName] = true;
+            startActionLoop();
+        } else {
+            if (currentRoomCode) {
+                socket.emit('player_action', { roomCode: currentRoomCode, action: actionName });
+            }
+        }
+    };
+    
+    const triggerEnd = (e) => {
+        e.preventDefault();
+        btn.classList.remove('active');
+        if (isContinuous) {
+            actions[actionName] = false;
+            
+            // Check if any action is still active
+            if (!Object.values(actions).some(v => v)) {
+                stopActionLoop();
+            }
+        }
+    };
+
+    btn.addEventListener('touchstart', triggerStart, { passive: false });
+    btn.addEventListener('mousedown', triggerStart);
+    
+    btn.addEventListener('touchend', triggerEnd);
+    btn.addEventListener('mouseup', triggerEnd);
+    btn.addEventListener('mouseleave', triggerEnd);
+}
+
+setupButton('btn-up', 'up');
+setupButton('btn-down', 'down');
+setupButton('btn-left', 'left');
+setupButton('btn-right', 'right');
+setupButton('btn-a', 'buttonA', false);
+
+// Prevent default touch behaviors like scrolling
 document.addEventListener('touchmove', function(e) {
     if (padScreen.style.display === 'block') {
         e.preventDefault();
     }
 }, { passive: false });
+
+// Haptic feedback fallback for non-mobile devices
+if (!window.navigator.vibrate) {
+    window.navigator.vibrate = function() {};
+}
