@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Host - Local Console</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="container" style="max-width: 800px;">
+        <h1>Local Console Screen</h1>
+        <div id="setup-area">
+            <h2>Room Code: <span id="room-code" style="color: #FF5733; font-size: 2.5rem; letter-spacing: 5px;">Loading...</span></h2>
+            <p>Go to this IP on your phone and enter the code to join.</p>
+            
+            <div id="players-list"></div>
+        </div>
+        
+        <div id="game-area">
+            <!-- Players will be drawn here -->
+        </div>
+    </div>
+
+    <script src="host.js"></script>
+</body>
+</html>

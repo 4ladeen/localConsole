@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Controller - Local Console</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="controller-container">
+        
+        <!-- Join Screen -->
+        <div id="join-screen">
+            <h1>Join Game</h1>
+            <input type="text" id="room-input" placeholder="Enter Room Code" maxlength="4" autocomplete="off">
+            <br>
+            <input type="text" id="name-input" placeholder="Your Name" maxlength="10">
+            <br>
+            <button id="join-btn" class="btn btn-primary">Join</button>
+            <p id="error-msg" style="color: #ff3333;"></p>
+        </div>
+
+        <!-- Pad Screen -->
+        <div id="pad-screen" style="display: none;">
+            <h2 id="player-name-display">Controller</h2>
+            
+            <div class="d-pad">
+                <button class="btn btn-secondary up" onmousedown="sendAction('up')" ontouchstart="sendAction('up')">↑</button>
+                <button class="btn btn-secondary left" onmousedown="sendAction('left')" ontouchstart="sendAction('left')">←</button>
+                <button class="btn btn-secondary right" onmousedown="sendAction('right')" ontouchstart="sendAction('right')">→</button>
+                <button class="btn btn-secondary down" onmousedown="sendAction('down')" ontouchstart="sendAction('down')">↓</button>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-primary action-btn" onmousedown="sendAction('buttonA')" ontouchstart="sendAction('buttonA')">A</button>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="controller.js"></script>
+</body>
+</html>
